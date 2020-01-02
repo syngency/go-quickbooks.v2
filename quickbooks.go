@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/jinmatt/go-quickbooks.v2/sdk"
-	"github.com/jinmatt/go-quickbooks.v2/sdk/consts"
+	"github.com/syngency/go-quickbooks.v2/sdk"
+	"github.com/syngency/go-quickbooks.v2/sdk/consts"
 )
 
 // Quickbooks client type
@@ -14,6 +14,18 @@ type Quickbooks struct {
 	RealmID     string
 	AccessToken string
 	baseURL     string
+}
+
+// Address quickbooks address object
+type Address struct {
+	ID                     string `json:"Id,omitempty"`
+	Line1                  string `json:"Line1"`
+	Line2                  string `json:"Line2,omitempty"`
+	City                   string `json:"City"`
+	CountrySubDivisionCode string `json:"CountrySubDivisionCode"`
+	PostalCode             string `json:"PostalCode"`
+	Lat                    string `json:"Lat,omitempty"`
+	Long                   string `json:"Long,omitempty"`
 }
 
 // NewClient creates a new client to work with Quickbooks

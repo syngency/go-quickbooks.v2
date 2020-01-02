@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/jinmatt/go-quickbooks.v2/sdk"
+	"github.com/syngency/go-quickbooks.v2/sdk"
 )
 
 // Discovery quickbooks discovery API response type

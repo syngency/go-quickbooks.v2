@@ -100,6 +100,25 @@ type TaxLine struct {
 	} `json:"TaxLineDetail,omitempty"`
 }
 
+// GetInvoice returns invoice from InvoiceID
+func (q *Quickbooks) GetInvoice(InvoiceID string) (*InvoiceObject, error) {
+	endpoint := fmt.Sprintf("/company/%s/invoice/%s", q.RealmID, InvoiceID)
+
+	res, err := q.makeGetRequest(endpoint)
+	if err != nil {
+		return nil, err
+	}
+	defer res.Body.Close()
+
+	invoiceObject := InvoiceObject{}
+	err = json.NewDecoder(res.Body).Decode(&invoiceObject)
+	if err != nil {
+		return nil, err
+	}
+
+	return &invoiceObject, nil
+}
+
 // CreateInvoice creates an invoice on quickbooks
 func (q *Quickbooks) CreateInvoice(invoice Invoice) (*InvoiceObject, error) {
 	endpoint := fmt.Sprintf("/company/%s/invoice", q.RealmID)

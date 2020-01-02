@@ -47,18 +47,6 @@ type Customer struct {
 	} `json:"MetaData,omitempty"`
 }
 
-// Address quickbooks address object
-type Address struct {
-	ID                     string `json:"Id,omitempty"`
-	Line1                  string `json:"Line1"`
-	Line2                  string `json:"Line2,omitempty"`
-	City                   string `json:"City"`
-	CountrySubDivisionCode string `json:"CountrySubDivisionCode"`
-	PostalCode             string `json:"PostalCode"`
-	Lat                    string `json:"Lat,omitempty"`
-	Long                   string `json:"Long,omitempty"`
-}
-
 // CustomerRef quickbooks customer reference object
 type CustomerRef struct {
 	Value string `json:"value"`

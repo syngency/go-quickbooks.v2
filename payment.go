@@ -53,21 +53,21 @@ type LineEx struct {
 	} `json:"any"`
 }
 
-// CreatePayment creates a payment on quickbooks
-func (q *Quickbooks) CreatePayment(payment Payment) (*PaymentObject, error) {
-	endpoint := fmt.Sprintf("/company/%s/payment", q.RealmID)
+// GetPayment returns payment from PaymentID
+func (q *Quickbooks) GetPayment(PaymentID string) (*PaymentObject, error) {
+	endpoint := fmt.Sprintf("/company/%s/payment/%s", q.RealmID, PaymentID)
 
-	res, err := q.makePostRequest(endpoint, payment)
+	res, err := q.makeGetRequest(endpoint)
 	if err != nil {
 		return nil, err
 	}
 	defer res.Body.Close()
 
-	newPayment := PaymentObject{}
-	err = json.NewDecoder(res.Body).Decode(&newPayment)
+	paymentObject := PaymentObject{}
+	err = json.NewDecoder(res.Body).Decode(&paymentObject)
 	if err != nil {
 		return nil, err
 	}
 
-	return &newPayment, nil
+	return &paymentObject, nil
 }
